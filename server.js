@@ -19,7 +19,6 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var dashboardRouter = require('./routes/dashboard');
 
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
