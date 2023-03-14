@@ -29,8 +29,12 @@ app.use('/auth', authRouter);
 app.use('/user', dashboardRouter);
 
 app.get('/*', (req, res) => {
-  res.render('404.ejs');
+  res.render('errors/404.ejs');
 })
+
+app.use((err, req, res, next) => {
+  res.render('errors/500.ejs', { errormessage: err });
+});
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
