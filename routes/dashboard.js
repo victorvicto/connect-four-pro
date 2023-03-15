@@ -4,16 +4,13 @@ var router = express.Router();
 
 router.use(checkConnection);
 
-router.get('/:username', (req, res, next) => {
-  res.render('dashboard.ejs', {username: req.params.username});
+router.get('/', (req, res, next) => {
+  res.render('dashboard.ejs', {user: req.session.user});
 });
 
 function checkConnection(req, res, next){
     if(req.isAuthenticated()){
-        if(req.session.user.username==req.params.username){ // Is this useful?
-            return next();
-        }
-        return res.redirect("/"+req.session.user.username);
+        return next();
     }
     res.redirect("/auth/login");
 }
